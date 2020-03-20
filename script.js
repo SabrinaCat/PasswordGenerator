@@ -1,8 +1,8 @@
 //global variables meaning at the very top of our code
-var lengthOf = []
-for (var i = 8; i <= 128; i++) {
-    console.log(i)
-}
+//dummy array for password posibilities
+var passwordArray = [];
+
+ var blankPassword = " ";
 // Array of numeric characters to be included in password
 var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
 
@@ -11,42 +11,38 @@ var lowerCaseLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', '
 
 // Array of uppercase characters to be included in password
 
-var upperCaseLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+var upperCaseLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 // Array of special characters to be included in password
 var specialCharacters = ['!','%',
 '^','&','*','(',')','-','_','+','=','{','}','[',']',
-'|','/',':',';','<','>','.','?']
+'|','/',':',';','<','>','.','?'];
+
+ 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-//charNumber= Value between 8-126
-//lowerCase= use lowercase letters
-//upperCase= use uppercase letters
-//numbers = use numbers
-//specials= use symbols
-
-
- // passwordText.value = password;
-
-
-
-
 
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+
+  passwordText.textContent = password;
 }
 
   // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword)
+
 function generatePassword() {
+  passwordArray = [];
+  blankPassword = " ";
 }
 
-
-
-
+if (console.log (passLength)){
+  generatePassword(passwordLength);
+}
+  
 if(lowerCase == true){
   generatePassword(lowerCaseLetters);
 }
@@ -68,28 +64,24 @@ if(specials == true){
   //a prompt for how many characters the user would like
     //must be 8-128 characters
     //store it in a variable
-var charNumber = prompt("How many Characters would you like your password to be?(Must be between 8-128 characters)");
-console.log(charNumber);
-if (charNumber, i<7 i>128 
-  )
-  window.alert("You have entered an incorrect number or letter: " + this.passwordLength)
-else (passwordLength)
-  window.alert("Thank you");
+var passLength = prompt("How long do you want your password to be? *Must be between 8-128*")
 
-
-if (charNumber >= 8 <= 128) 
-  console.log(charNumber)
-else (i<7, i>128)
-//alert (charNumber);
-//alert("Please select a number between 8-128")
-//continue 
-
-//while (i <7, i >128);
-//alert("Please select a number between 8-128");
-//break (charNumber >= 8 <= 128);
+//way to keep the password within the set parameters
+do { (passLength);
+}
+  while (passLength < 8 || passLength > 128);
  
+  if (passLength > 8 || passLength <128 ){
+  (lowerCase)
+  }
+
+//if (passLength < 8 || passLength > 128)
+  //console.log(passLength);
+
+//return (lowercase)
 
 
+//var passLength = prompt("How long would you like your password to be? *Must be between)
 
 //ask the user if they want lowercase
     //store it in a variable
@@ -108,4 +100,30 @@ console.log(numbers);
 var specials = confirm("Any special characters too?")
 console.log(specials);
 
+do {
+  if (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false) {
+    alert("I cannot make a password containing no characters. Please select atleast" + "1" +
+    "character set.") 
+  }
+}
+while (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false)
 
+if (numeric) {
+  passwordArray = passwordArray.concat(numericCharacters);
+
+}
+
+if (lowerCase) {
+  passwordArray = passwordArray.concat(lowerCaseLetters);
+
+}
+
+if (upperCase) {
+  passwordArray = passwordArray.concat(upperCaseLetters);
+
+}
+
+if (specialCharOption) {
+  passwordArray = passwordArray.concat(specialCharacters);
+
+}
