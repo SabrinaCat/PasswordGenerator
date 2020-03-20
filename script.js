@@ -1,6 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+
+
+
 //global variables meaning at the very top of our code
 
 //used as a starting point to input our complete password array
@@ -59,17 +62,14 @@ function generatePassword() {
     (passwordHolder += passwordArray[Math.floor(Math.random() * passwordArray.length)]);
   }
   }
-  
-
-// Write password to the #password text area
+  // Write password to the #password text area
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = passwordHolder;
+  passwordText.textContent = password;
 }
-
-
+  
   //these are my prompts that will activate when #generateBtn is clicked
 
   //a prompt for how many characters the user would like
@@ -97,13 +97,11 @@ console.log(numberChar);
 var specials = confirm("Any special characters too?");
 console.log(specials);
 
-do {
+//do {
   if (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false) {
     alert("I cannot make a password containing no characters. Please select atleast") + "1" +
     ("character set.") ;
+  }
   
-  while (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false);
- generatePassword
- 
-  return passwordHolder;
-  }}
+  //while (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false);
+  
