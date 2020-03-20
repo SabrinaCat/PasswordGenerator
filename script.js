@@ -27,26 +27,48 @@ var passwordArray = [];
 
 var passwordHolder = " ";
 
+
+
+ 
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword) ;
+
+  // Add event listener to generate button
+generateBtn.addEventListener("click", generatePassword) ;
+
+function generatePassword() { 
+
+  if (numberChar) {
+    (passwordArray = passwordArray.concat(numericCharacters));
+  }
+  
+  if (lowerCase) {
+    (passwordArray = passwordArray.concat(lowerCaseLetters));
+  }
+  
+  if (upperCase) {
+    (passwordArray = passwordArray.concat(upperCaseLetters));
+  }
+  
+  if (specialCharOption) {
+    (passwordArray = passwordArray.concat(specialCharacters));
+  }
+  //loop for arrays
+  for (i = 0; i < passLength; i++) {
+    (passwordHolder += passwordArray[Math.floor(Math.random() * passwordArray.length)]);
+  }
+  }
+  
+
 // Write password to the #password text area
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
- // passwordText.passwordHolder = 
+  passwordText.value = passwordHolder;
 }
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
 
-  // Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword)
-var writePassword=document.querySelector('password')
-var passwordText = document.querySelector("#password");
-
-function generatePassword() {  
-
-  passwordArray = [];
-  passwordHolder = '';
-  
 
   //these are my prompts that will activate when #generateBtn is clicked
 
@@ -74,47 +96,14 @@ console.log(numberChar);
   //ask the user if they want special characters
 var specials = confirm("Any special characters too?");
 console.log(specials);
-}
 
 do {
-  //if (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false) {
-    alert("I cannot make a password containing no characters. Please select atleast" + "1" +
-    "character set.") ;
-  }
-  while (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false)
-
-if (numberChar) {
-  passwordArray = passwordArray.concat(numericCharacters);
-
-}
-
-if (lowerCase) {
-  passwordArray = passwordArray.concat(lowerCaseLetters);
-
-}
-
-if (upperCase) {
-  passwordArray = passwordArray.concat(upperCaseLetters);
-
-}
-
-if (specialCharOption) {
-  passwordArray = passwordArray.concat(specialCharacters);
-
-}
-
-if (generateBtn("click")){
-generatePassword;
-writePassword;
-}
-
-    // Write password to the #password input
+  if (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false) {
+    alert("I cannot make a password containing no characters. Please select atleast") + "1" +
+    ("character set.") ;
   
-      for (i = 0; i < passwordLength; i++) {
-        passwordHolder += passwordArray[Math.floor(Math.random() * passwordArray.length)];
-      }
-      console.log (passwordText)
-      
-  
-
-  
+  while (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false);
+ generatePassword
+ 
+  return passwordHolder;
+  }}
