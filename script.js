@@ -1,11 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
-
-
-//global variables meaning at the very top of our code
-
 //used as a starting point to input our complete password array
 var passwordHolder = " ";
 
@@ -26,49 +21,60 @@ var specialCharacters = ['!','%',
 '^','&','*','(',')','-','_','+','=','{','}','[',']',
 '|','/',':',';','<','>','.','?'];
 
-var passwordArray = [];
-
-var passwordHolder = " ";
-
-
-
  
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword) ;
 
+  // Write password to the #password text area
+  function writePassword() {
+    var password = generatePassword();
+    console.log(password);
+    var passwordText = document.querySelector("#password");
+  
+    passwordText.textContent = password;
+  }
+
   // Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword) ;
+generateBtn.addEventListener("click", writePassword) ;
 
 function generatePassword() { 
+  console.log(passLength);
+  for (i = 0; i < passLength; i++) {
+    (passwordHolder += passwordArray[Math.floor(Math.random() * passwordArray.length)]);
+  
+//while (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false);
+//do {
+  if (lowerCase == false && upperCase == false && numberChar == false && specials == false) {
+    alert("I cannot make a password containing no characters. Please select atleast") + "1" +
+    ("character set.") ;
+  }
 
-  if (numberChar) {
+  if (numberChar == true) {
     (passwordArray = passwordArray.concat(numericCharacters));
   }
   
-  if (lowerCase) {
+  if (lowerCase == true) {
     (passwordArray = passwordArray.concat(lowerCaseLetters));
   }
   
-  if (upperCase) {
+  if (upperCase == true) {
     (passwordArray = passwordArray.concat(upperCaseLetters));
   }
   
-  if (specialCharOption) {
+  if (specials == true) {
     (passwordArray = passwordArray.concat(specialCharacters));
-  }
-  //loop for arrays
-  for (i = 0; i < passLength; i++) {
-    (passwordHolder += passwordArray[Math.floor(Math.random() * passwordArray.length)]);
-  }
-  }
-  // Write password to the #password text area
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
 
-  passwordText.textContent = password;
-}
+//after the concat do another for to make random characters in the passwordHolder 
+//loop for password array
+for (i = 0; i < passLength; i++) {
+  (passwordHolder += passwordArray[Math.floor(Math.random() * password.Length)]);
+    
+return passwordHolder;
+}}
+  }}
+  
+  
+
   
   //these are my prompts that will activate when #generateBtn is clicked
 
@@ -97,11 +103,6 @@ console.log(numberChar);
 var specials = confirm("Any special characters too?");
 console.log(specials);
 
-//do {
-  if (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false) {
-    alert("I cannot make a password containing no characters. Please select atleast") + "1" +
-    ("character set.") ;
-  }
-  
-  //while (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false);
+
+
   
