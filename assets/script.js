@@ -1,107 +1,108 @@
-  //these are my prompts that will activate when #generateBtn is clicked
+//generate button selector
+const generateBtn = document.querySelector('.btn');
+
 
   //a prompt for how many characters the user would like
     //must be 8-128 characters
     //store it in a variable
-    var passLength = prompt("How long do you want your password to be? *Must be between 8-128*");
+    const passLength = prompt("How long do you want your password to be? *Must be between 8-128*");
     console.log(passLength);
     
     //ask the user if they want lowercase
         //store it in a variable
-    var lowerCase = confirm("Would you like lowercase characters?");
+    const lowerCase = confirm("Would you like lowercase characters?");
     console.log(lowerCase);
     
       //ask the user if they want uppercase
         //store it in a variable
-    var upperCase = confirm("How about uppercase characters?");
+    const upperCase = confirm("How about uppercase characters?");
     console.log(upperCase);
     
       //ask the user if they want numeric
         //store it in a variable
-    var numberChar =confirm("What about numbers?");
+    const numberChar =confirm("What about numbers?");
     console.log(numberChar);
     
       //ask the user if they want special characters
-    var specials = confirm("Any special characters too?");
+    const specials = confirm("Any special characters too?");
     console.log(specials);
 
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-
 //used as a starting point to input our complete password array
-let passwordHolder = "";
+let passwordHolder = [];
 
 //Array for password posibilities
 let passwordArray = [];
 
 // Array of numeric characters to be included in password
-var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
+const numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
 
 // Array of lowercase characters to be included in password
-var lowerCaseLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+const lowerCaseLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 // Array of uppercase characters to be included in password
-var upperCaseLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+const upperCaseLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 // Array of special characters to be included in password
-var specialCharacters = ['!','%',
+const specialCharacters = ['!','%',
 '^','&','*','(',')','-','_','+','=','{','}','[',']',
 '|','/',':',';','<','>','.','?'];
 
+//prompts have been answered so now we generate the password based on user input
+generatePassword();
 
 function generatePassword() { 
-
+  //Validate number choice
+  if (passLength < 8 || passLength > 128) {
+    alert("Invalid number of characters");
+    return "";
+  }
 //while (lowerCase == false && upperCase == false && numeric == false && specialCharOption == false);
 //do {
   if (lowerCase == false && upperCase == false && numberChar == false && specials == false) {
-    alert("I cannot make a password containing no characters. Please select atleast") + "1" +
-    ("character set.") ;
+    alert("I cannot make a password containing no characters. Please select atleast 1 character set")
   }
 
   if (numberChar == true) {
-    (passwordArray = passwordArray.concat(numericCharacters));
+    passwordArray = passwordArray.concat(numericCharacters);
   }
   
   if (lowerCase == true) {
-    (passwordArray = passwordArray.concat(lowerCaseLetters));
+    passwordArray = passwordArray.concat(lowerCaseLetters);
   }
   
   if (upperCase == true) {
-    (passwordArray = passwordArray.concat(upperCaseLetters));
+    passwordArray = passwordArray.concat(upperCaseLetters);
   }
   
   if (specials == true) {
-    (passwordArray = passwordArray.concat(specialCharacters));
+    passwordArray = passwordArray.concat(specialCharacters);
+  };
+//convert to interger to ensure for loop runs to a speci
+let passwordLen = parseInt(passLength);
 
 
-
-writePassword()
-
-}}
-  
-  
-// Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword()) ;
-
-  // Write password to the #password text area
-  function writePassword() {
-    //var password = passwordHolder;
-   // console.log(password);
-    var passwordText = document.querySelector("#password");
-  //after the concat do another for to make random characters in the passwordHolder 
+//after the concat do another for loop to make random characters in the passwordHolder 
 //loop for password array
-for (i = 0; i >= passLength; i++) {
-let passwordHolder = passwordArray[(Math.ceil(Math.random() * passLength.length))];
-  
-  console.log(passwordHolder)
-return passwordHolder;
-    
+  let password = "";
+  for (var i = 0; i < passwordLen; i++) {
+    //Make password of chosen length from chosen options
+    let randomIndex = Math.floor(Math.random() * passwordArray.length);
+    //Random characters from arrays chosen
+    let randomCharacter = passwordArray[randomIndex];
+    password = password + randomCharacter;
   }
-  passwordText.textContent = passwordHolder;
+
+  return password;
+  
 }
-  
 
+// Write password to the #password input
+function writePassword() {
+  const password = generatePassword();
+  const passwordText = document.querySelector("#password");
 
+  passwordText.value = password;
+}
 
-
-  
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
